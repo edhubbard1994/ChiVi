@@ -1,0 +1,28 @@
+.HomePage{
+    position: absolute;
+    align-self: center;
+    top: 50%;
+    left: 50%;
+    opacity: 50%;
+}
+.homebox{
+    position: absolute;
+    height: 40%;
+    width: 50%;
+    background-color: #AAAAAA;
+    text-align: center;
+    top: 20%;
+    left: 25%;
+    opacity: 0.5;
+
+}
+
+.ViewMap{
+    position: absolute;
+    height: 50%;
+    width: 50%;
+    text-align: center;
+    top: 25%;
+    left: 25%;
+
+}
