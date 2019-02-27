@@ -1,6 +1,7 @@
 import React from 'react';
 import Map from './ViewMap';
 import ReactMapGL from 'react-map-gl';
+import './comp.css';
 require('dotenv').config();
 
 class ViewMap extends React.Component{
@@ -21,7 +22,7 @@ class ViewMap extends React.Component{
         const style  = {
             position: 'absolute',
             textAlign: 'left',
-            top: '10%',
+            top: '20%',
             left: '25%',
             bottom: 0,
             width: '20%',
@@ -30,10 +31,13 @@ class ViewMap extends React.Component{
 
       
         return(          
-            <ReactMapGL {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport})}
-            mapboxApiAccessToken = {key}
-             mapStyle = 'mapbox://styles/mapbox/dark-v9'
-             style = { style }  /> 
+            <div>
+                <h1 style = {{color: 'white', opacity: 0.9}} >Visualize</h1>
+                <ReactMapGL {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport})}
+                    mapboxApiAccessToken = {key}
+                     mapStyle = 'mapbox://styles/mapbox/dark-v9'
+                    style = { style }  /> 
+            </div>
             );
     }
 }
