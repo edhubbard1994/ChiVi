@@ -4,7 +4,10 @@ import './App.css';
 import HomePage from './components/HomePage';
 import ViewMap from './components/ViewMap';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-class App extends Component {
+
+
+
+class App extends Component { 
   render() {
     return (
       <div className="App">
