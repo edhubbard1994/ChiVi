@@ -4,13 +4,14 @@ import './comp.css';
 
 
 class MapList extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        this.props.markers = props.markers;
     }
     render(){
         return(
             <div>
-                
+                <ul>{this.props.markers}</ul>
             </div>
         );
     }
