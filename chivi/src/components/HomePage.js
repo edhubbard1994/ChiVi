@@ -1,6 +1,5 @@
 import React from 'react';
 import { Animate, AnimateKeyframes, AnimateGroup } from 'react-simple-animate';
-
 import './comp.css';
 
 const props = {

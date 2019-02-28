@@ -1,10 +1,11 @@
 import React from 'react';
-import Map from './ViewMap';
 import ReactMapGL from 'react-map-gl';
 import './comp.css';
 require('dotenv').config();
 
 class ViewMap extends React.Component{
+
+    
    
     state = {
         viewport: {
@@ -15,6 +16,12 @@ class ViewMap extends React.Component{
             zoom: 10
         }
     };
+
+
+    constructor(props){
+        super(props);
+        this.props = props;
+    }
 
     render(){
         const key = process.env.REACT_APP_MAPBOXAPIKEY;
