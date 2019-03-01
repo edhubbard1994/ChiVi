@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, {Marker} from 'react-map-gl';
 import './comp.css';
 import MapList from './MapList';
 require('dotenv').config();
@@ -46,7 +46,9 @@ class ViewMap extends React.Component{
                 <ReactMapGL  {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport})}
                     mapboxApiAccessToken = {key}
                      mapStyle = 'mapbox://styles/mapbox/dark-v9'
-                    style = { style }></ReactMapGL>
+                    style = { style }>
+                         <Marker latitude={41.8850} longitude={-87.6198} offsetLeft={-20} offsetTop={-10}>Mark</Marker>
+                    </ReactMapGL>
                      <button className = 'popUpBtn'>Action</button>                            
             </div>
             );
