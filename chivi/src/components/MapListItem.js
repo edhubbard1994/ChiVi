@@ -21,3 +21,5 @@ class MapListItem extends React.Component{
 
     }
 }
+
+export default MapListItem;

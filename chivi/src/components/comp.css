@@ -19,6 +19,18 @@
 
 .ViewMap{
     background-color: black;
-    border: 10px
+    border: 10px;
+
+}
+
+.popUpBtn{
+    position: absolute;
+    top:20%;
+    left: 15%;
+    width: 10%;
+    height: 5%;
+    color: white;
+    background-color: black;
+    opacity: 0.85;
 
 }
