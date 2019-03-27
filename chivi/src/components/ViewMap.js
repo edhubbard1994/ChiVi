@@ -4,6 +4,8 @@ import './comp.css';
 import MapList from './MapList';
 require('dotenv').config();
 
+
+var count = 0;
 class ViewMap extends React.Component{
 
     
@@ -22,6 +24,17 @@ class ViewMap extends React.Component{
     constructor(props){
         super(props);
         this.props = props;
+        this.btnClick = this.btnClick.bind(this);
+        
+        //this.props.results =  null
+    }
+    
+    btnClick() {
+        count++;
+        console.log(count);
+        let st = (count % 2 === 1) ? 'test1' : 'test2';
+        let sm = {listData: st};
+        this.setState(sm);
     }
 
    
@@ -45,11 +58,12 @@ class ViewMap extends React.Component{
                 <h1 style = {{color: 'white', opacity: 0.9}} >Visualize</h1>
                 <ReactMapGL  {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport})}
                     mapboxApiAccessToken = {key}
-                     mapStyle = 'mapbox://styles/mapbox/dark-v9'
+                     mapStyle = 'mapbox://styles/mapbox/dark-v9'ß
                     style = { style }>
                          <Marker latitude={41.8850} longitude={-87.6198} offsetLeft={-20} offsetTop={-10}>Mark</Marker>
                     </ReactMapGL>
-                     <button className = 'popUpBtn'>Action</button>                            
+                     <button onClick = {this.btnClick} className = 'popUpBtn'>Display Data</button>   
+                     <MapList state = {this.state.listData} />                      
             </div>
             );
     }
