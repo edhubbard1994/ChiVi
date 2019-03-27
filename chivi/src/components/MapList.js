@@ -4,30 +4,25 @@ import ReactMapGL from 'react-map-gl';
 import './comp.css';
 
 
+
 class MapList extends React.Component{
+
+    test = ["hello","this", "is", "a", "test"];
 
     constructor(props){
         super(props);
-        this.props.markers = props.markers;
-        this.state.show = false;
+        this.getMarkers = this.getMarkers.bind(this);
     }  
 
-    show(){
-        this.setState({show : true});
-    }
-
-    hide(){
-        this.setState({show : false});
+    getMarkers(){
+        this.setState({markers: this.test}); //TODO: change to this.props.markers
     }
 
     render(){
+
         return(
-            <div>
-                <Popup trigger = {this.state.show} 
-                modal
-                closeOnDocumentClick>
-                    <ul>{this.props.markers}</ul>
-                </Popup> 
+            <div className = 'Map List'>
+                    <ul><li>{this.props.state}</li></ul>
             </div>
         );
     }
