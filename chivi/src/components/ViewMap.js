@@ -53,7 +53,7 @@ class ViewMap extends React.Component{
                 <h1 style = {{color: 'white', opacity: 0.9}} >Visualize</h1>
                 <ReactMapGL  {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport: viewport})}
                     mapboxApiAccessToken = {key}
-                     mapStyle = 'mapbox://styles/mapbox/dark-v9'ß
+                     mapStyle = 'mapbox://styles/mapbox/dark-v9'
                     style = { style }>
                          <Marker latitude={41.8850} longitude={-87.6198} offsetLeft={-20} offsetTop={-10}>Mark</Marker>
                     </ReactMapGL>
