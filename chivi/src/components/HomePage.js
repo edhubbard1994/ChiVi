@@ -24,6 +24,7 @@ class HomePage extends React.Component{
                         The goal is to foster discussions about our local environment using data from already
                         compiled data sets and the ones that you can help create here.
                     </p>
+
                 </div>        
                 </Animate>    
         );

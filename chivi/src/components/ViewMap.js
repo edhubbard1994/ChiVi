@@ -8,6 +8,7 @@ require('dotenv').config();
 var count = 0;
 class ViewMap extends React.Component{
 
+
     constructor(props){
         super(props);
         this.props = props;
@@ -45,6 +46,7 @@ class ViewMap extends React.Component{
             opacity: 0.9
           };
 
+
           console.log("THESTATE:", this.state.count);
         return(          
             <div>
@@ -57,6 +59,7 @@ class ViewMap extends React.Component{
                     </ReactMapGL>
                      <button onClick = {this.btnClick} className = 'popUpBtn'>Display Data</button>   
                      <MapList items = {this.state.items} />                      
+
             </div>
             );
     }

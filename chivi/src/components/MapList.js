@@ -6,7 +6,9 @@ import MapListItem from './MapListItem';
 
 
 
+
 class MapList extends React.Component{
+
 
    
     constructor(props){
@@ -29,6 +31,7 @@ class MapList extends React.Component{
                     <ul>  {this.state.items.map(item =>
           <MapListItem data = {item} />
         )}</ul>
+
             </div>
         );
     }
