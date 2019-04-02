@@ -8,40 +8,33 @@ require('dotenv').config();
 var count = 0;
 class ViewMap extends React.Component{
 
-    
-   
-    state = {
-        viewport: {
-            width: '50%',
-            height: '75%',
-            latitude: 41.8850,
-            longitude: -87.6198,
-            zoom: 10
-        }
-    };
-
-
     constructor(props){
         super(props);
         this.props = props;
-        this.btnClick = this.btnClick.bind(this);
-        
-        //this.props.results =  null
+        this.listState = "test0";
+        this.state= {
+            items: [{name: "one", description: "this is a description"},{name: "two", description: "this is a description"},{name: "three", description: "this is a description"}],
+            viewport: {
+                width: '50%',
+                height: '75%',
+                latitude: 41.8850,
+                longitude: -87.6198,
+                zoom: 10
+            }
+        };
     }
     
-    btnClick() {
+    btnClick = () => {
         count++;
         console.log(count);
-        let st = (count % 2 === 1) ? 'test1' : 'test2';
-        let sm = {listData: st};
-        this.setState(sm);
+        let st = this.state.items;
+        st.push(count);
+        this.setState(st);      
     }
 
-   
 
     render(){
         const key = process.env.REACT_APP_MAPBOXAPIKEY;
-        console.log("key"+ key);
         const style  = {
             position: 'absolute',
             textAlign: 'left',
@@ -52,18 +45,18 @@ class ViewMap extends React.Component{
             opacity: 0.9
           };
 
-      
+          console.log("THESTATE:", this.state.count);
         return(          
             <div>
                 <h1 style = {{color: 'white', opacity: 0.9}} >Visualize</h1>
-                <ReactMapGL  {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport})}
+                <ReactMapGL  {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport: viewport})}
                     mapboxApiAccessToken = {key}
                      mapStyle = 'mapbox://styles/mapbox/dark-v9'ß
                     style = { style }>
                          <Marker latitude={41.8850} longitude={-87.6198} offsetLeft={-20} offsetTop={-10}>Mark</Marker>
                     </ReactMapGL>
                      <button onClick = {this.btnClick} className = 'popUpBtn'>Display Data</button>   
-                     <MapList state = {this.state.listData} />                      
+                     <MapList items = {this.state.items} />                      
             </div>
             );
     }

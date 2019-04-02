@@ -2,27 +2,33 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import ReactMapGL from 'react-map-gl';
 import './comp.css';
+import MapListItem from './MapListItem';
 
 
 
 class MapList extends React.Component{
 
-    test = ["hello","this", "is", "a", "test"];
-
+   
     constructor(props){
         super(props);
+        this.state = {
+            items: this.props.items
+        };
+        console.log("props = "+ props);
         this.getMarkers = this.getMarkers.bind(this);
     }  
 
     getMarkers(){
-        this.setState({markers: this.test}); //TODO: change to this.props.markers
+        
     }
 
     render(){
-
+        console.log("ListSTATE:", this.state);
         return(
-            <div className = 'Map List'>
-                    <ul><li>{this.props.state}</li></ul>
+            <div className = 'MapList'>
+                    <ul>  {this.state.items.map(item =>
+          <MapListItem data = {item} />
+        )}</ul>
             </div>
         );
     }

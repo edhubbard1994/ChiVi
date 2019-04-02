@@ -34,3 +34,10 @@
     opacity: 0.85;
 
 }
+
+.MapList{
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    color: white;
+}

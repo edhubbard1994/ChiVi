@@ -6,12 +6,15 @@ import './comp.css';
 class MapListItem extends React.Component{
     constructor(props){
         super(props);
+        this.state = props.data;
         
     }
 
     render(){
         return( 
             <div className = 'ListItem'>
+            <h2>{this.state.name}</h2>
+            <p>{this.state.description}</p>
             </div>
         );
 
