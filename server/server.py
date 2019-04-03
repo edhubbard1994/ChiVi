@@ -10,7 +10,7 @@ def home():
 def local_data():
     if request.method == 'GET':
         ##do Get request here
-        return
+        return getLocalData('test')
     
     elif request.method == 'POST':
         ##do Post request stuff here
@@ -20,3 +20,8 @@ def local_data():
         ##do put request stuff here
         return
 
+
+
+def getLocalData(query):
+    if query == 'test':
+        return ['test','test2','test3'] # must convert objects to json first
