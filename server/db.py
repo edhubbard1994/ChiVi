@@ -9,6 +9,7 @@ class db():
         cursor = connection.cursor()
         
         def __init__(self):
+                #stores points that users create on the map
                 self.cursor.execute('''CREATE TABLE map_point(
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         alias TEXT NOT NULL,
@@ -18,7 +19,7 @@ class db():
                         long FLOAT,
                         feed_id INTEGER[]
                         )''')
-
+                #stores response comments pulled by 
                 self.cursor.execute(''' CREATE TABLE feed(
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         author TEXT,
@@ -27,6 +28,13 @@ class db():
                         )''')
 
                 self.connection.commit()
+
+        def query_points(self,params):
+                pass
+        
+        def query_feed(self,params):
+                pass
+
 
 
 
