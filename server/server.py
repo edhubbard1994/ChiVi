@@ -1,9 +1,10 @@
 from flask import Flask
 from flask import request
+from server import db
 import sqlite3
 
 app = Flask(__name__)
-
+db = db.db_object
 
 
 @app.route('/')
