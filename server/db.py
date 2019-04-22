@@ -33,19 +33,30 @@ class _DB():
 
                 self.connection.commit()
 
-        def query_points(self,param): # Queries for map_points. Param is the parameter that maps to _point_queries dict
-                self.cursor.execute(_DB._point_queries[param])
-                return self.cursor.fetchAll()
+        def query_points(self,param = "*"): # Queries for map_points. Param is the parameter that maps to _point_queries dict
+                self.cursor.execute("SELECT * FROM map_point ")
+                results = self.cursor.fetchAll()
+                self.connection.commit()
+                return results
         
         def query_feed(self,param_list): # Queries the for comment feeds. Takes a list of id's
                 feed_list = []
                 for db_id in param_list:
-                        self.cursor.execute('SELECT FROM FEED WHERE id EQUALS ?', db_id)
+                        self.cursor.execute('SELECT FROM feed WHERE id EQUALS ?', db_id)
                         feed_list.append(self.cursor.fetchOne())
+                        self.connection.commit()
                 return feed_list
 
         def add_point(self, point):
-                self.cursor.execute("")
+                self.cursor.execute("INSERT INTO map_point VALUES ?",point.toLiist())
+                self.add_feed(point.feed_list)
+                self.connection.commit()
+        
+        def add_feed(self,f_list):
+                for item in f_list:
+                        self. cursor.execute("INSERT INTO feed VALUES", item)
+                self.connection.commit()
+
 
 
 #will be the object by which all db transactions are made through

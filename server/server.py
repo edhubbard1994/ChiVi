@@ -1,7 +1,9 @@
 from flask import Flask
-from flask import request
+from flask import Request, request
 from server import db
+from server.dbobjects import Point, Feed
 import sqlite3
+import json
 
 app = Flask(__name__)
 db = db.db_object
@@ -11,19 +13,20 @@ db = db.db_object
 def home():
     return 'home'
 
-@app.route('/localdata', methods = ['GET','POST','PUT'])
+@app.route('/localdata', methods = ['GET','POST'])
 def local_data():
     if request.method == 'GET':
-        ##do Get request here
+        db.query_points()
         return getLocalData('test')
     
     elif request.method == 'POST':
-        ##do Post request stuff here
+        p = request.data
+        db.add_point(Point())
         return
 
     else:
         ##do put request stuff here
-        return
+        return "ERROR NOT A VALID METHOD"
 
 
 
