@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/node-demo");
+mongoose.connect("mongodb://localhost:27017/chivi");
 
 class DB{
+   
     constructor(){
         this.conn = mongoose;
-        this.pointSchema ={
+        this.pointSchema = {
             id: 1,
             title: String,
             category: String,
@@ -17,19 +18,19 @@ class DB{
         this.db = this.conn.model('Point',this.pointSchema);
     }
 
-    addPoint = (point)=>{
+    addPoint(point){
         this.db.create(point);
     }
 
-    getPoints = ()=>{
+    getPoints(){
         return this.db.find().all();
     }
 
-    getPoint = (point)=>{
+    getPoint(point){
         return this.db.find(point);
     }
 
-    makePoint = ()=>{
+    makePoint(){
         return this.pointSchema;
     }
 
