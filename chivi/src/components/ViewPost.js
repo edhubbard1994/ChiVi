@@ -6,11 +6,14 @@ import './comp.css';
 class ViewPost extends React.Component{
     constructor(props){
         super(props)
-        this.newComment = '';
+        this.newComment = {author:'',body:''};
     }
 
     handleText = (event)=>{
-        this.newComment = event.target.value;
+        this.newComment.body = event.target.value;
+    }
+    handleName = (event)=>{
+        this.newComment.author = event.target.value;
     }
 
     render(){
@@ -23,12 +26,15 @@ class ViewPost extends React.Component{
                     <div>
                         <h4>{comment.author}</h4>
                         <p>{comment.body}</p>
-                    </div>)}                 
+                    </div>)} 
+                    <form>
+                    <input placeholder = "Who Are You?"></input>               
                     <textarea placeholder = "Commnent on this post" onChange = {this.handleText}></textarea>
                     <button onClick = {()=>{
                         this.state.comments.push(this.newComment);
                         console.log(this.state.comments);
                     }}>Post</button>
+                    </form>
             </div>
         );
     }
