@@ -18,7 +18,9 @@ router.post('/add',(req,res, next)=>{
 
 router.put('/update',(req, res, next)=>{
   db.findByIdAndUpdate(req.body._id, req.body).then((point)=>{
-    
+    res.send("success")
+  }).catch((err)=>{
+    res.send("error: "+ err);
   });
 });
 
