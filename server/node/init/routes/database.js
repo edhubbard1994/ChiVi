@@ -1,39 +1,26 @@
 const mongoose = require('mongoose')
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/chivi");
+const promise = global.Promise;
+const Schema = mongoose.Schema
+mongoose.createConnection("mongodb://localhost:27017/chivi");
+pointSchema = new Schema({
+    title: String,
+    author: String,
+    category: String,
+    post: String,
+    lat: Number,
+    lon: Number,
+    comments: [{author: String, body: String}]
+});
+pointSchema.index({id:1});
+var Point = mongoose.model('Point', pointSchema);
+mongoose.connect("mongodb://localhost:27017/chivi", {useNewUrlParser: true}).then(()=>{
+    
+    console.log('connected to db');
+}).catch((err)=>{
+    console.log(err);
+});
 
-class DB{
-   
-    constructor(){
-        this.conn = mongoose;
-        this.pointSchema = {
-            id: 1,
-            title: String,
-            category: String,
-            post: String,
-            lat: Number,
-            lon: Number,
-            comments: [{author: String, body: String}]
-        };
-        this.db = this.conn.model('Point',this.pointSchema);
-    }
 
-    addPoint(point){
-        this.db.create(point);
-    }
 
-    getPoints(){
-        return this.db.find().all();
-    }
+module.exports = Point
 
-    getPoint(point){
-        return this.db.find(point);
-    }
-
-    makePoint(){
-        return this.pointSchema;
-    }
-
-}
-
-module.exports = DB;
