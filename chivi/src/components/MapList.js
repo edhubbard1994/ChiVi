@@ -2,7 +2,7 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import ReactMapGL from 'react-map-gl';
 import './comp.css';
-import MapListItem from './MapListItem';
+import MapListItem from './MarkerInfo';
 
 
 

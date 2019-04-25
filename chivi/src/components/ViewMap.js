@@ -1,8 +1,10 @@
 import React from 'react';
-import MapGL, {Marker} from 'react-map-gl';
+import MapGL, {Marker,Popup} from 'react-map-gl';
 import './comp.css';
 import MapList from './MapList';
 import Pin from './Pin';
+
+import MarkerInfo from './MarkerInfo';
 require('dotenv').config();
 const request = require('request');
 
@@ -16,7 +18,7 @@ class ViewMap extends React.Component{
         this.state= {
             loaded:false,
             points: [],
-            selected: {name: "one", description: "this is a description"},
+            selected: {lat:41.8850, lon: -87.5198,title:"Welcome to Chivi's interactive map",post:'click on a point to start'},
             viewport: {
                 width: '50%',
                 height: '75%',
@@ -49,32 +51,20 @@ class ViewMap extends React.Component{
 
     markerClick = () => {
         console.log("clicked on MARKER");
+        
     }
 
     renderMarkers = (point)=>{
         return(
             <Marker  key = {point._id} latitude={point.lat} longitude={point.lon} offsetLeft={-20} offsetTop={-10} >
-                <div style = {{cursor: 'pointer'}} onClick ={()=>{console.log("clicked on MARKER")}}>
+                <div style = {{cursor: 'pointer'}} onClick ={()=>{this.setState({selected: point})}}>
                 <Pin></Pin>
             </div>
         </Marker>
         );
     }
 
-    renderPopup = ()=>{
-        const {popupInfo} = this.state;
-    
-        return popupInfo && (
-          <Popup tipSize={5}
-            anchor="top"
-            longitude={popupInfo.longitude}
-            latitude={popupInfo.latitude}
-            closeOnClick={false}
-            onClose={() => this.setState({popupInfo: null})} >
-            <CityInfo info={popupInfo} />
-          </Popup>
-        );
-      }
+
     
 
     render(){
@@ -92,17 +82,27 @@ class ViewMap extends React.Component{
           };
 
 
-          console.log("THESTATE:", this.state.count);
+          console.log("THESTATE:", this.state);
         return(          
             <div>
                 <h1 style = {{color: 'white', opacity: 0.9}} >Visualize</h1>
-                <MapGL  {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport: viewport})}
+                <MapGL {...this.state.viewport} onViewportChange={(viewport) => this.setState({viewport: viewport})}
                     mapboxApiAccessToken = {key}
                      mapStyle = 'mapbox://styles/mapbox/dark-v9'
                     style = { style }>
                         {this.state.points.map( point =>
                            this.renderMarkers(point)
                         )}
+                        <Popup 
+                            tipSize={5}
+                            anchor="top"
+                            longitude={this.state.selected.lon}
+                            latitude={this.state.selected.lat}
+                            closeOnClick={false}
+                             >
+                            <MarkerInfo info={this.state.selected} />
+                         </Popup>
+                        
                     </MapGL>
                      <button onClick = {this.btnClick} className = 'popUpBtn'>Report</button>   
                     

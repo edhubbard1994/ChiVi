@@ -16,6 +16,7 @@ class App extends Component {
           <ul>
             <li><Route exact path = '/' component = { HomePage } /></li>
             <li><Route path = '/map' component = { ViewMap } /></li>
+            <li><Route path = '/view'/></li>
           </ul>
         </BrowserRouter>
       </div>
