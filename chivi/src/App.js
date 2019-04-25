@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from './components/HomePage';
 import ViewMap from './components/ViewMap';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import ViewPost from './components/ViewPost';
 
 
 
@@ -16,7 +17,7 @@ class App extends Component {
           <ul>
             <li><Route exact path = '/' component = { HomePage } /></li>
             <li><Route path = '/map' component = { ViewMap } /></li>
-            <li><Route path = '/view'/></li>
+            <li><Route path = '/view' component = { ViewPost }/></li>
           </ul>
         </BrowserRouter>
       </div>
