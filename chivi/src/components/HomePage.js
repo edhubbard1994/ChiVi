@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { Animate, AnimateKeyframes, AnimateGroup } from 'react-simple-animate';
 import './comp.css';
+import { Redirect } from 'react-router-dom';
 
 const props = {
     startStyle : { opacity: 0 },
@@ -10,11 +12,24 @@ const props = {
 class HomePage extends React.Component{
 
     constructor(){
-        super();    
+        super(); 
+        this.state = {clicked: false}   
     }
+
+    onClick = ()=> {
+        return(
+        <Redirect to = {
+            {pathname: '/map'}
+        }/>
+        )
+    }
+    
     
 
     render(){
+        if(this.state.clicked){
+            return this.onClick();
+        }
         return(      
                 <Animate className = 'homebox' play {...props}>
                 <div >
@@ -24,7 +39,11 @@ class HomePage extends React.Component{
                         The goal is to foster discussions about our local environment using data from already
                         compiled data sets and the ones that you can help create here.
                     </p>
-
+                    <button onClick = {
+                        ()=>{
+                            this.setState({clicked : true})
+                        }
+                    } >Explore</button>
                 </div>        
                 </Animate>    
         );

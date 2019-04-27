@@ -3,6 +3,7 @@ import MapGL, {Marker,Popup} from 'react-map-gl';
 import './comp.css';
 import MapList from './MapList';
 import Pin from './Pin';
+import AddPoint from './AddPoint';
 
 import MarkerInfo from './MarkerInfo';
 require('dotenv').config();
@@ -30,14 +31,6 @@ class ViewMap extends React.Component{
        
     }
     
-    btnClick = () => {
-        count++;
-        console.log(count);
-        let st = this.state.items;
-        st.push(count);
-        this.setState(st);      
-    }
-
     loadPoints = () => {
         console.log("loading points...")
         request.get('http://localhost:5000/api',(err, res, body)=>{
@@ -62,6 +55,10 @@ class ViewMap extends React.Component{
             </div>
         </Marker>
         );
+    }
+
+    addCallback = (obj)=>{
+        this.setState(obj);
     }
 
 
@@ -94,6 +91,7 @@ class ViewMap extends React.Component{
                            this.renderMarkers(point)
                         )}
                         <Popup 
+                            cursor = 'pointer'
                             tipSize={5}
                             anchor="top"
                             longitude={this.state.selected.lon}
@@ -104,7 +102,7 @@ class ViewMap extends React.Component{
                          </Popup>
                         
                     </MapGL>
-                     <button onClick = {this.btnClick} className = 'popUpBtn'>Report</button>   
+                      <AddPoint callback = {this.addCallback}/>
                     
             </div>
             );
